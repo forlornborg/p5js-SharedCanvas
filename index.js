@@ -1,19 +1,21 @@
-var toHost = 'public';
-
 var express = require('express');
-console.log("hosting:" + toHost);
 var app = express();
-app.use(express.static(toHost));
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-app.use('/', function(req, res, next){
-    console.log(Date.now(),'Request Type: ', req.method);
-})
+/*app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});*/
 
-/*app.get('/', function(req, res, next){
-    console.log("in app.get");
-    res.send('nothing here');
-})*/
+app.use(express.static('public'));
 
 
 
-var server = app.listen(3000);
+io.on('connection', function(socket){
+    console.log('a user connected');
+});
+
+http.listen(3000, function(){
+    console.log("listening on *:3000");
+});
+
