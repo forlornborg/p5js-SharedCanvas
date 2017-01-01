@@ -1,3 +1,4 @@
-# p5js sharedCanvas using socket.io and express
+# p5js-SharedCanvas
+Built using socket.io and express
 
 Inspired by a video from Daniel Shiffman
